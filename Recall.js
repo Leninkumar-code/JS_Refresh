@@ -111,7 +111,44 @@
 //     // ! (not operator)
 //     // ?? (null coelescing)
 
-    let a=false, b=true, c=false, d=true;
+    // let a=false, b=true, c=false, d=true;
 
-    console.log (a&&b || c&&d);
-    console.log ((a&&b) || (c&&d));
+    // console.log (a&&b || c&&d);
+    // console.log ((a&&b) || (c&&d));
+    
+// let user = Symbol("lenin");
+// let user1 = Symbol("lenin");
+// if (user === user1) {
+//     console.log(true)
+// }
+// else {
+//     console.log(false)
+// }
+
+
+
+// console.log((1!=1)?"lenin":"false")
+
+// let a=10, b='lenin', c= 'siren' ;
+// let ans = (a,b,c);
+// console.log(ans);
+
+// let a={name : "lenin"};
+// console.log(a.name); // => lenin
+// delete a.name;
+// console.log(a); // => {}
+
+// let a={name:'lenin'};
+// let b= 'name' in a;
+// console.log(b);
+
+// function car (make,model,year){
+//     this.make = make;
+//     this.model = model;
+//     this.year = year;
+// };
+
+// let mycar = new car('Chevrolet','Cruze',2024);
+// console.log (mycar);
+// let a = new car('toyota','camry',2023);
+// console.log(a instanceof car);
