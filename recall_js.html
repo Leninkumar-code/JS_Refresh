@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Recall JavaScript
+    </title>
+</head>
+<html>
+<body>
+<h1>Examples of HTML DOM methods</h1>
+        
+    1) getElementsById (id):
+        <p id="demo">This is a paragraph.</p>
+        <script>
+        const element = document.getElementById("demo");
+        console.log(element.innerHTML); // Output: This is a paragraph.
+        </script>
+
+    2) getElementsByClassName :
+        <p class="demo">First</p>
+        <p class="demo">Second</p>
+        <p class="demo">Third</p>
+        <script>
+            const elements = document.getElementsByClassName('demo');
+            console.log(elements[0].innerHTML); // o/p: First
+            console.log(elements[1].innerHTML); // o/p: Second
+            console.log(elements[2].innerHTML); // o/p: Third
+            elements[2].innerHTML="Changed by inner.HTML";
+            console.log(elements[2].innerHTML); // o/p: Changed by inner.HTML
+        </script>
+
+    3) getElementsByTagName :
+        <p>First Para</p>
+        <p>2<sup>nd</sup> para</p>
+        <p>3<sup>rd</sup> para</p>    
+        <script>
+            const tags = document.getElementsByTagName('p');
+            console.log(tags.length); //o/p 3
+            console.log(tags[2].innerHTML) //o/p: 3rd para
+        </script>
+
+    4) getElementsByName :<br>
+        <input type="text" name="username" placeholder="UserName">
+        <input type="text" name="password" placeholder="Password"><br><br>
+        <script>
+            const input = document.getElementsByName('username');
+            input[0].value = 'Leninkumar'; // it add the value to input
+        </script>
+
+    5) querySelector :
+        <pre class="example">1st Query</pre>
+        <pre class="example">2nd Query</pre>
+        <script>
+            const que = document.querySelector('.example');
+            console.log(que.innerHTML); //o/p: it return the first one only | 1st query
+        </script>
+
+    6) querySelectorAll : 
+        <div><p>querySelectorAll 1</p></div>
+        <div><p>querySelectorAll 2</p></div>
+        <script>
+            const queall = document.querySelectorAll('div > p');
+            console.log(queall.length); //o/p 2
+        </script>
+
+    7) createElement(tagname) :
+
+        <script>
+            const newP = document.createElement("p");
+            newP.innerHTML = "This is a New Paragraph Tag !";
+            document.body.appendChild(newP)
+        </script>
+
+    8) appendChild() :
+        <div id="create"></div>
+        <script>
+            const a = document.getElementById('create');
+            const newPara = document.createElement("p");
+            newPara.innerHTML = "This is new Paragraph by appendchid";
+            a.appendChild(newPara);
+            const len = document.querySelectorAll('div > p');
+            console.log(len.length); // o/p 1
+        </script>
+
+    9) removeChild() :
+        <div id="rem">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, earum!</p>
+        </div>
+        <script>
+                const con = document.getElementById('rem');
+                const para = document.querySelector("#rem p");
+                con.removeChild(para);
+        </script>
+
+    10) replaceChild() :
+        <div id="container">
+            <p id="old">Old paragraph</p>
+        </div>
+        <script>
+            const div = document.getElementById('container');
+            const newa = document.createElement("p");
+            newa.innerHTML = "New Paragraph !";
+            const replace = document.getElementById('old');
+            div.replaceChild(newa,replace);
+        </script>
+
+    11) setAttribute(attribute,value) :
+        <div id="sura">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, a?
+        </div>
+        <script>
+            const sura = document.getElementById('sura');
+            sura.setAttribute('class','highlight');
+            const malli = document.querySelector('.highlight');
+            console.log(malli.innerHTML); //o/p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, a?
+        </script>
+    12) getAttribute(attribute) :
+        <div id="ben" class="ten">Lorem ipsum dolor sit amet.</div>
+        <script>
+            const select = document.querySelector('.ten');
+            console.log(select.getAttribute('id'));
+        </script>
+    13) removeAttribute(attribute) :
+        <div id="ten" class="ben">Lorem ipsum dolor sit amet.</div>
+        <script>
+            const omni = document.querySelector('.ben');
+            omni.removeAttribute('id');
+            console.log(omni.getAttribute('id'));
+        </script>
+    14) innerHTML:
+        <p id="sunil">Lorem, ipsum dolor.</p>
+        <script>
+            const suni = document.getElementById('sunil');
+            suni.innerHTML = "<b>New Content</b>";
+        </script>
+
+    15) textContent : => it return tsg elements without ( inner )tags.
+        <p id="pann"> <i>Mr.Leninkumar8</i><br> </b><sub>Mr.</sub><b>Leninkumar</b><sup>8</sup></p>
+        <script>
+            const plain = document.getElementById('pann');
+            console.log(plain.textContent); // o/p: Mr.Leninkumar8
+        </script>
+
+    16) insertBefore(newNode,referenceNode): => Insert anew element before an existing one.
+        <div id="parent">
+            <p id="para1">This is First para</p>
+            <p id="para2">This is Second para</p>
+        </div>
+        <script>
+            const newpara = document.createElement('p');
+            newpara.textContent = 'This is new para';
+            newpara.setAttribute('id','para3');
+            const olddiv = document.getElementById('parent');
+            const refNode = document.getElementById('para1');
+            olddiv.insertBefore(newpara,refNode);
+        </script>
+
+    17) remove():
+        <div>
+            <p id="id1">Lorem ipsum dolor sit amet.1</p>
+            <p id="id2">Lorem ipsum dolor sit amet.2</p>
+            <p id="id3">Lorem ipsum dolor sit amet.3</p>
+        </div>
+        <button id="btn">Remove</button>
+        <script>
+            const button = document.getElementById('btn');
+
+            button.addEventListener('click',()=>{
+                const para2 = document.getElementById('id2');
+                para2.remove()
+            })
+        </script>
+
+                        EVENT HANDLING
+    18) addEventListener(event,function):
+        <div>
+            <input type="text" id="input" placeholder="Enter your name here">
+            <button id="butn">Enter</button>
+            <p id="ins"></p>
+        </div>
+        <script>
+            const inpot = document.getElementById('input');
+            const dis = document.getElementById('ins');
+            const ptn = document.getElementById('butn');
+
+            ptn.addEventListener('click',()=>{
+                const value = inpot.value
+                dis.innerHTML = 'Your Name: '+value;
+            })
+        </script>
+
+    19) removeEventlistener(event,function):
+    <button id="myButton">Click Me</button>
+    <p id="status"></p>
+
+    <script>
+        const mbtn = document.getElementById('myButton');
+        const status = document.getElementById('status');
+        let count = 0;
+
+        const handle = ()=>{
+            count++;
+            status.textContent = 'You Clicked Button ' + count + 'Times';
+
+            if (count>=5){
+                mbtn.removeEventListener('click',handle);
+                status.textContent += ' ||You Clicked over 5 times removed event listener';
+            }
+        }
+        mbtn.addEventListener('click',handle);
+    </script>
+
+    20) Traversing the DOM
+    <div id="container">
+        <h1>Title</h1>
+        <p id="para1">First paragraph</p>
+        <div class="nested">
+            <p id="para2">Second paragraph (inside nested div)</p>
+        </div>
+        <p id="para3">Third paragraph</p>
+    </div>
+
+    <script>
+        const container = document.getElementById("container");
+
+        // Parent node of an element
+        console.log("Parent Node of #para1:", document.getElementById("para1").parentNode);  // <div id="container">
+
+        // Parent element (similar to parentNode, but skips non-element nodes)
+        console.log("Parent Element of #para2:", document.getElementById("para2").parentElement);  // <div class="nested">
+
+        // Accessing childNodes (includes text nodes)
+        console.log("Child Nodes of container:", container.childNodes);  // NodeList(7): h1, text, p, text, div, text, p
+
+        // Accessing children (only element nodes)
+        console.log("Children of container:", container.children);  // HTMLCollection(4): h1, p, div, p
+
+        // First child node (could be a text node)
+        console.log("First Child of container:", container.firstChild);  // #text (whitespace)
+
+        // First element child
+        console.log("First Element Child of container:", container.firstElementChild);  // <h1>Title</h1>
+
+        // Last child node
+        console.log("Last Child of container:", container.lastChild);  // #text (whitespace)
+
+        // Last element child
+        console.log("Last Element Child of container:", container.lastElementChild);  // <p id="para3">Third paragraph</p>
+
+        // Next sibling node (could be a text node)
+        console.log("Next Sibling of #para1:", document.getElementById("para1").nextSibling);  // #text
+
+        // Next element sibling
+        console.log("Next Element Sibling of #para1:", document.getElementById("para1").nextElementSibling);  // <div class="nested">
+
+        // Previous sibling node (could be a text node)
+        console.log("Previous Sibling of #para3:", document.getElementById("para3").previousSibling);  // #text
+
+        // Previous element sibling
+        console.log("Previous Element Sibling of #para3:", document.getElementById("para3").previousElementSibling);  // <div class="nested">
+
+        // Closest ancestor that matches the selector
+        console.log("Closest ancestor of #para2 with class 'nested':", document.getElementById("para2").closest(".nested"));  // <div class="nested">
+
+        // Check if an element contains another
+        console.log("Does #container contain #para1?", container.contains(document.getElementById("para1")));  // true
+
+    </script>
+
+<a href="https://www.example.com" id="myLink">Go to Example</a>
+
+<script>
+  const link = document.getElementById("myLink");
+  link.addEventListener("click", function(event) {
+    let rimot = prompt('Enter Your Name');
+    if (rimot === ""){
+    event.preventDefault();  // Prevents the link from navigating
+    alert("Default action prevented! Please Enter Anything even space");}
+  });
+</script>
+
+
+<h1>JAVASCRIPT DOM EVENTS</h1>
+Mouse Events
+1) onclick 
+<button onclick="hello()">Print</button>
+<script>
+    const hello = ()=>{
+        window.print()
+    }
+</script><br>
+
+2) ondblclick
+
+<img src="/wp3570561-batman-comics-wallpaper.jpg" height="50px" width="100px" alt="Error" ondblclick="alert('image clicked double')">
+
+3)onmouseover & onmouseout
+
+
+<button onmouseover="showTooltip()" onmouseout="hideTooltip()">Hover me</button>
+
+
+<script>
+  function showTooltip() {
+    document.body.style.backgroundColor = 'black'
+  }
+
+  function hideTooltip() {
+    document.body.style.backgroundColor = 'white';
+  }
+</script>
+
+
+4)onmousedown
+<div onmousedown="console.log('Mouse button pressed')">Press Mouse</div>
+5)onmouseup
+<div onmouseup="console.log('Mouse button released')">Release Mouse</div>
+6)onmousemove
+<div onmousemove="console.log('Mouse is moving')">Move your mouse here</div>
+7)onmouseover
+<div onmouseover="console.log('Mouse over element')">Hover over me</div>
+8)onmouseout
+<div onmouseout="console.log('Mouse out of element')">Move out from here</div>
+9)onmouseenter
+<div onmouseenter="console.log('Mouse entered')">Enter me</div>
+10)onmouseleave
+<div onmouseleave="console.log('Mouse left')">Leave me</div>
+Keyboard Events
+1)onkeydown
+<input type="text" onkeydown="console.log('Key down: ' + event.key)" placeholder="Press a key">
+2)onkeyup
+<input type="text" onkeyup="console.log('Key up: ' + event.key)" placeholder="Release a key">
+3)onkeypress
+<input type="text" onkeypress="console.log('Key pressed: ' + event.key)" placeholder="Press a key">
+Form Events
+1)onsubmit
+<form onsubmit="alert('Form submitted');">
+    <input type="text" placeholder="Enter something">
+    <input type="submit" value="Submit">
+  </form>
+  
+2)onchange
+<input type="text" onchange="console.log('Input changed')" placeholder="Change me">
+
+3)onfocus
+<input type="text" onfocus="console.log('Input focused')" placeholder="Focus me">
+
+4)onblur
+<input type="text" onblur="console.log('Input blurred')" placeholder="blur me">
+
+5)oninput
+<input type="text" oninput="console.log('Input event')" placeholder="Type something">
+
+6)onreset
+<form onreset="alert('Form reset')">
+    <input type="text" placeholder="Enter something">
+    <input type="reset" value="Reset">
+  </form>
+
+Window Events
+1)onload
+<body onload="console.log('Page fully loaded')">
+
+2)onresize
+<body onresize="console.log('Window resized')">
+
+3)onscroll
+<div style="height: 200px; overflow-y: scroll;" onscroll="console.log('Scrolled')">
+    Scroll me
+    <div style="height: 400px;"></div>
+  </div>
+
+4)onunload
+<body onunload="console.log('Page unloaded')">
+
+
+Clipboard Events
+
+1)oncopy
+<input type="text" oncopy="alert('Content copied')" value="Copy this text">
+2)oncut
+<input type="text" oncut="alert('Content cut')" value="Cut this text">
+3)onpaste
+<input type="text" onpaste="alert('Content pasted')" placeholder="Paste something">
+
+
+Drag and Drop Events
+
+1)ondragstart
+<div draggable="true" ondragstart="console.log('Drag started')">Drag me</div>
+
+2)ondragover
+<div ondragover="event.preventDefault(); console.log('Dragging over')">Drag over me</div>
+
+3)ondrop
+<div ondrop="event.preventDefault(); console.log('Dropped')">Drop here</div>
+
+Miscellaneous Events
+
+1)oncontestmenu
+<div oncontextmenu="console.log('Right-clicked'); return false;">Right-click me</div>
+
+2)onerror
+<img src="invalid.jpg" onerror="console.log('Image failed to load')">
+
+Media Events
+
+1)onplay
+<video onplay="console.log('Video playing')" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+2)onpause
+<video onpause="console.log('Video paused')" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+3)onended
+<video onended="console.log('Video ended')" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  
+
+</body>
+
+<!-- Here’s a comprehensive list of JavaScript events, grouped by categories, with examples for each:
+
+### **1. Mouse Events**
+- **click**: Triggered when the user clicks on an element.
+  ```javascript
+  document.getElementById("myButton").addEventListener("click", function() {
+    alert("Button clicked!");
+  });
+  ```
+
+- **dblclick**: Triggered when the user double-clicks on an element.
+  ```javascript
+  document.getElementById("myButton").addEventListener("dblclick", function() {
+    alert("Button double-clicked!");
+  });
+  ```
+
+- **mousedown**: Triggered when the mouse button is pressed down.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("mousedown", function() {
+    console.log("Mouse down");
+  });
+  ```
+
+- **mouseup**: Triggered when the mouse button is released.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("mouseup", function() {
+    console.log("Mouse up");
+  });
+  ```
+
+- **mousemove**: Triggered when the mouse is moved over an element.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("mousemove", function() {
+    console.log("Mouse is moving");
+  });
+  ```
+
+- **mouseover**: Triggered when the mouse pointer is moved onto an element.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("mouseover", function() {
+    console.log("Mouse over element");
+  });
+  ```
+
+- **mouseout**: Triggered when the mouse pointer moves out of an element.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("mouseout", function() {
+    console.log("Mouse out of element");
+  });
+  ```
+
+### **2. Keyboard Events**
+- **keydown**: Triggered when a key is pressed down.
+  ```javascript
+  document.addEventListener("keydown", function(event) {
+    console.log(`Key pressed: ${event.key}`);
+  });
+  ```
+
+- **keyup**: Triggered when a key is released.
+  ```javascript
+  document.addEventListener("keyup", function(event) {
+    console.log(`Key released: ${event.key}`);
+  });
+  ```
+
+- **keypress**: Triggered when a key is pressed (deprecated, use `keydown`).
+  ```javascript
+  document.addEventListener("keypress", function(event) {
+    console.log(`Key pressed: ${event.key}`);
+  });
+  ```
+
+### **3. Form Events**
+- **submit**: Triggered when a form is submitted.
+  ```javascript
+  document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form from submitting
+    alert("Form submitted!");
+  });
+  ```
+
+- **change**: Triggered when the value of an input element changes.
+  ```javascript
+  document.getElementById("myInput").addEventListener("change", function() {
+    console.log("Input value changed");
+  });
+  ```
+
+- **focus**: Triggered when an element gains focus.
+  ```javascript
+  document.getElementById("myInput").addEventListener("focus", function() {
+    console.log("Input focused");
+  });
+  ```
+
+- **blur**: Triggered when an element loses focus.
+  ```javascript
+  document.getElementById("myInput").addEventListener("blur", function() {
+    console.log("Input lost focus");
+  });
+  ```
+
+### **4. Window Events**
+- **load**: Triggered when the window or an element is fully loaded.
+  ```javascript
+  window.addEventListener("load", function() {
+    console.log("Window loaded");
+  });
+  ```
+
+- **resize**: Triggered when the window is resized.
+  ```javascript
+  window.addEventListener("resize", function() {
+    console.log("Window resized");
+  });
+  ```
+
+- **scroll**: Triggered when the user scrolls within the window or an element.
+  ```javascript
+  window.addEventListener("scroll", function() {
+    console.log("Window scrolled");
+  });
+  ```
+
+- **unload**: Triggered when the window is about to unload (e.g., user navigates away).
+  ```javascript
+  window.addEventListener("unload", function() {
+    console.log("Window unloading");
+  });
+  ```
+
+### **5. Clipboard Events**
+- **copy**: Triggered when the user copies content.
+  ```javascript
+  document.addEventListener("copy", function() {
+    console.log("Content copied");
+  });
+  ```
+
+- **cut**: Triggered when the user cuts content.
+  ```javascript
+  document.addEventListener("cut", function() {
+    console.log("Content cut");
+  });
+  ```
+
+- **paste**: Triggered when the user pastes content.
+  ```javascript
+  document.addEventListener("paste", function() {
+    console.log("Content pasted");
+  });
+  ```
+
+### **6. Touch Events** (For touchscreens)
+- **touchstart**: Triggered when a finger touches the screen.
+  ```javascript
+  document.addEventListener("touchstart", function(event) {
+    console.log("Touch start");
+  });
+  ```
+
+- **touchmove**: Triggered when a finger moves on the screen.
+  ```javascript
+  document.addEventListener("touchmove", function(event) {
+    console.log("Touch move");
+  });
+  ```
+
+- **touchend**: Triggered when a finger is removed from the screen.
+  ```javascript
+  document.addEventListener("touchend", function(event) {
+    console.log("Touch end");
+  });
+  ```
+
+### **7. Media Events**
+- **play**: Triggered when media playback starts.
+  ```javascript
+  document.getElementById("myVideo").addEventListener("play", function() {
+    console.log("Video started playing");
+  });
+  ```
+
+- **pause**: Triggered when media playback is paused.
+  ```javascript
+  document.getElementById("myVideo").addEventListener("pause", function() {
+    console.log("Video paused");
+  });
+  ```
+
+- **ended**: Triggered when media playback ends.
+  ```javascript
+  document.getElementById("myVideo").addEventListener("ended", function() {
+    console.log("Video ended");
+  });
+  ```
+
+### **8. Drag and Drop Events**
+- **dragstart**: Triggered when an element starts being dragged.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("dragstart", function(event) {
+    console.log("Element is being dragged");
+  });
+  ```
+
+- **dragover**: Triggered when an element is dragged over a target.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("dragover", function(event) {
+    event.preventDefault(); // Necessary to allow drop
+    console.log("Element dragged over");
+  });
+  ```
+
+- **drop**: Triggered when an element is dropped onto a target.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("drop", function(event) {
+    event.preventDefault();
+    console.log("Element dropped");
+  });
+  ```
+
+### **9. Miscellaneous Events**
+- **error**: Triggered when an error occurs.
+  ```javascript
+  window.addEventListener("error", function(event) {
+    console.error("Error occurred:", event.message);
+  });
+  ```
+
+- **contextmenu**: Triggered when the right-click context menu is opened.
+  ```javascript
+  document.getElementById("myDiv").addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+    console.log("Right-clicked");
+  });
+  ```
+
+These are some of the most common JavaScript events, along with examples. You can attach event listeners to DOM elements to handle these events. -->
+
+
+
+<!-- Here’s a comprehensive list of **DOM events** (inline event handlers) in JavaScript, including the **"on"** prefix such as `onclick`, `onmouseover`, etc., with examples:
+
+### **1. Mouse Events**
+- **onclick**: Triggered when an element is clicked.
+  ```html
+  <button onclick="alert('Button clicked!')">Click me</button>
+  ```
+
+- **ondblclick**: Triggered when an element is double-clicked.
+  ```html
+  <button ondblclick="alert('Button double-clicked!')">Double Click me</button>
+  ```
+
+- **onmousedown**: Triggered when the mouse button is pressed down.
+  ```html
+  <div onmousedown="console.log('Mouse button pressed')">Press Mouse</div>
+  ```
+
+- **onmouseup**: Triggered when the mouse button is released.
+  ```html
+  <div onmouseup="console.log('Mouse button released')">Release Mouse</div>
+  ```
+
+- **onmousemove**: Triggered when the mouse is moved over an element.
+  ```html
+  <div onmousemove="console.log('Mouse is moving')">Move your mouse here</div>
+  ```
+
+- **onmouseover**: Triggered when the mouse pointer moves onto an element.
+  ```html
+  <div onmouseover="console.log('Mouse over element')">Hover over me</div>
+  ```
+
+- **onmouseout**: Triggered when the mouse pointer moves out of an element.
+  ```html
+  <div onmouseout="console.log('Mouse out of element')">Move out from here</div>
+  ```
+
+- **onmouseenter**: Triggered when the mouse enters the area of an element.
+  ```html
+  <div onmouseenter="console.log('Mouse entered')">Enter me</div>
+  ```
+
+- **onmouseleave**: Triggered when the mouse leaves the area of an element.
+  ```html
+  <div onmouseleave="console.log('Mouse left')">Leave me</div>
+  ```
+
+### **2. Keyboard Events**
+- **onkeydown**: Triggered when a key is pressed down.
+  ```html
+  <input type="text" onkeydown="console.log('Key down: ' + event.key)" placeholder="Press a key">
+  ```
+
+- **onkeyup**: Triggered when a key is released.
+  ```html
+  <input type="text" onkeyup="console.log('Key up: ' + event.key)" placeholder="Release a key">
+  ```
+
+- **onkeypress**: Triggered when a key is pressed (deprecated, use `onkeydown`).
+  ```html
+  <input type="text" onkeypress="console.log('Key pressed: ' + event.key)" placeholder="Press a key">
+  ```
+
+### **3. Form Events**
+- **onsubmit**: Triggered when a form is submitted.
+  ```html
+  <form onsubmit="alert('Form submitted'); return false;">
+    <input type="text" placeholder="Enter something">
+    <input type="submit" value="Submit">
+  </form>
+  ```
+
+- **onchange**: Triggered when the value of an input element changes.
+  ```html
+  <input type="text" onchange="console.log('Input changed')" placeholder="Change me">
+  ```
+
+- **onfocus**: Triggered when an element gains focus.
+  ```html
+  <input type="text" onfocus="console.log('Input focused')" placeholder="Focus me">
+  ```
+
+- **onblur**: Triggered when an element loses focus.
+  ```html
+  <input type="text" onblur="console.log('Input blurred')" placeholder="Blur me">
+  ```
+
+- **oninput**: Triggered when the user provides input.
+  ```html
+  <input type="text" oninput="console.log('Input event')" placeholder="Type something">
+  ```
+
+- **onreset**: Triggered when a form is reset.
+  ```html
+  <form onreset="alert('Form reset')">
+    <input type="text" placeholder="Enter something">
+    <input type="reset" value="Reset">
+  </form>
+  ```
+
+### **4. Window Events**
+- **onload**: Triggered when the window or an element finishes loading.
+  ```html
+  <body onload="console.log('Page fully loaded')">
+  ```
+
+- **onresize**: Triggered when the window is resized.
+  ```html
+  <body onresize="console.log('Window resized')">
+  ```
+
+- **onscroll**: Triggered when the window or an element is scrolled.
+  ```html
+  <div style="height: 200px; overflow-y: scroll;" onscroll="console.log('Scrolled')">
+    Scroll me
+    <div style="height: 400px;"></div>
+  </div>
+  ```
+
+- **onunload**: Triggered when the window is about to unload (navigate away).
+  ```html
+  <body onunload="console.log('Page unloaded')">
+  ```
+
+### **5. Clipboard Events**
+- **oncopy**: Triggered when content is copied.
+  ```html
+  <input type="text" oncopy="alert('Content copied')" value="Copy this text">
+  ```
+
+- **oncut**: Triggered when content is cut.
+  ```html
+  <input type="text" oncut="alert('Content cut')" value="Cut this text">
+  ```
+
+- **onpaste**: Triggered when content is pasted.
+  ```html
+  <input type="text" onpaste="alert('Content pasted')" placeholder="Paste something">
+  ```
+
+### **6. Media Events**
+- **onplay**: Triggered when media playback starts.
+  ```html
+  <video onplay="console.log('Video playing')" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  ```
+
+- **onpause**: Triggered when media playback is paused.
+  ```html
+  <video onpause="console.log('Video paused')" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  ```
+
+- **onended**: Triggered when media playback ends.
+  ```html
+  <video onended="console.log('Video ended')" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  ```
+
+### **7. Drag and Drop Events**
+- **ondragstart**: Triggered when the user starts dragging an element.
+  ```html
+  <div draggable="true" ondragstart="console.log('Drag started')">Drag me</div>
+  ```
+
+- **ondragover**: Triggered when an element is being dragged over a target.
+  ```html
+  <div ondragover="event.preventDefault(); console.log('Dragging over')">Drag over me</div>
+  ```
+
+- **ondrop**: Triggered when an element is dropped onto a target.
+  ```html
+  <div ondrop="event.preventDefault(); console.log('Dropped')">Drop here</div>
+  ```
+
+### **8. Miscellaneous Events**
+- **oncontextmenu**: Triggered when the context menu (right-click) is opened.
+  ```html
+  <div oncontextmenu="console.log('Right-clicked'); return false;">Right-click me</div>
+  ```
+
+- **onerror**: Triggered when an error occurs (commonly used for images or script elements).
+  ```html
+  <img src="invalid.jpg" onerror="console.log('Image failed to load')">
+  ```
+
+This list contains the most common DOM events with examples that use the inline `on` attributes in HTML. -->
+</html>
